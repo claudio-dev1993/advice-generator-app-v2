@@ -1,0 +1,111 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@800&display=swap');
+@import './colors/colors.scss';
+@import './resets/resets.scss';
+
+@mixin fontManrope($size) {
+    font-family: 'Manrope';
+    font-size: $size;
+}
+
+@mixin displayFlex($direction, $justify-content, $align-items) {
+    display: flex;
+    flex-direction: $direction;
+    justify-content: $justify-content;
+    align-items: $align-items;
+}
+
+body {
+    background-color: $dark-blue ;
+    @include displayFlex(column, center, center);
+    min-height: 100vh;
+    min-width: 375px;
+    @include fontManrope(1rem);
+    padding: 0 1rem;
+    
+}
+
+.advice {
+    min-width: 21.43rem;
+    min-height: 19.68rem;
+    background-color: $dark-graysh-blue;
+    border-radius: 10px;
+    position: relative;
+    @include displayFlex(column, space-evenly, center);
+
+    &__header {
+        @include fontManrope(0.68rem);
+        text-transform: uppercase;
+        color: $neon-green;
+    }
+
+    &__message {
+        @include fontManrope(1.5rem);
+        text-align: center;
+        min-height: 8.25rem;
+        padding: 0 1.5rem;
+        color: $light-cyan;
+        
+        &::before {
+            content: open-quote ;
+        }
+    
+        &::after {
+            content: close-quote;
+        }
+
+    }
+
+    &__divider{
+        margin-bottom: 2rem;
+        &::after {
+            content: url('/images/pattern-divider-mobile.svg');
+        }
+    }
+
+    &__button {
+        position: absolute;
+        top: 90%;
+        width: 4rem;
+        height: 4rem;
+        border-radius: 50%;
+        border: none;
+        background-color: $neon-green;
+        @include displayFlex(row, center, center);
+
+        &::after {
+            content: url('/images/icon-dice.svg');
+        }
+    }
+}
+
+
+@media screen and (min-width: 768px) {
+    
+    .advice {
+        width: 33.75rem;
+        min-height: 20.75rem;
+
+        &__header {
+            font-size: 0.81rem;
+        }
+
+        &__message {
+            font-size: 1.75rem;
+            padding: 0 3rem;
+        }
+
+        &__divider {
+            &::after {
+                content: url('/images/pattern-divider-desktop.svg');
+            }
+        }
+
+        &__button {
+            &:hover {
+                cursor: pointer;
+                box-shadow: 0px 0px 40px #53FFAA;
+                transition: 0.7s ease;
+            }
+        }
+    }
+}
